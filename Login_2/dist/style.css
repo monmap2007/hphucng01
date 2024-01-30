@@ -1,0 +1,74 @@
+html,
+        body {
+            height: 100%;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        .screen {
+            width: inherit;
+            height: inherit;
+            background-color: #000000;
+            position: relative;
+        }
+
+        .fireG {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 200px;
+        }
+
+        .fireCrBr {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: inherit;
+            height: inherit;
+            transform: rotate(calc((360deg / var(--bars)) * var(--barNumber)));
+        }
+
+        .fireCr {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 20px;
+            height: 20px;
+            color: inherit;
+            background-color: currentColor;
+            border-radius: 50%;
+            filter: drop-shadow(0px 4px 15px currentColor);
+            transform: translateY(calc(100% * 10));
+            transition: 0.3s linear;
+            opacity: 0;
+        }
+        .fireG.fired .fireCr {
+            animation: fireWork 2s linear var(--animationDelay,0s) 1 forwards;
+        }
+
+        @keyframes fireWork {
+            0%
+            {
+                transform: translateY(calc(30% * 10));
+                opacity: 1;
+            }
+            80%
+            {
+                opacity: 1;
+            }
+            100%
+            {
+                opacity: 0;
+                transform: translateY(calc(-60% * 10));
+            }            
+        }        
+
+        .fireCr::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 400%;
+            background-color: currentColor;
+            filter: blur(44px);
+            clip-path: polygon(0% 0%, 100% 0%, 60% 100%, 40% 100%);
+        }

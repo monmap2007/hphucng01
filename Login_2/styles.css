@@ -1,0 +1,257 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh; /* Chiều cao của container là 100% chiều cao của viewport */
+}
+
+.section {
+  flex: 1; /* Phần tử sẽ mở rộng để lấp đầy container */
+}
+
+.section1 {
+  background: linear-gradient(to bottom, #ffffff, rgb(209, 209, 209)); /* Gradient từ màu xanh đậm đến màu xanh nhạt */
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: white; /* Màu chữ cho nội dung trên hình ảnh */  
+  flex-grow: 0.5; /* Phần tử section 1 sẽ mở rộng tỷ lệ linh hoạt */
+}
+
+.section2 {
+  flex-grow: 1;
+  position: relative;
+  background-image: url('sc2.jpg'); /* Thay đổi đường dẫn đến hình ảnh nền */
+  background-size: cover;
+  background-position: center;
+  color: white; /* Màu chữ cho nội dung trên hình ảnh */
+  }
+
+
+.navigation {
+  margin-bottom: 20px; /* Khoảng cách giữa thanh điều hướng và nội dung */
+  text-align: center; /* Căn giữa các nút điều hướng */
+  padding-top: 20px; /* Khoảng cách từ đỉnh của thanh điều hướng đến chữ */
+  padding-bottom: 10px; /* Khoảng cách từ dưới cùng của thanh điều hướng đến nội dung của section */
+}
+
+.navigation ul {
+  list-style-type: none; /* Loại bỏ dấu đầu dòng cho danh sách */
+  padding: 0;
+  margin: 0;
+}
+
+.navigation li {
+  display: inline-block; /* Hiển thị các nút cạnh nhau */
+  margin-right: 20px; /* Khoảng cách giữa các nút */
+}
+
+.navigation li:last-child {
+  margin-right: 0; /* Không có margin bên phải cho nút cuối cùng */
+}
+
+.navigation a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border-radius: 15px;
+  transition: color 0.3s, background-color 0.3s; /* Thêm hiệu ứng chuyển đổi */
+}
+
+.navigation a:hover {
+  color: white; /* Chuyển màu chữ khi di chuột vào */
+  background-color: black; /* Chuyển màu nền khi di chuột vào */
+}
+
+
+
+.slogan {
+  font-family:'Times New Roman', Times, serif;
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px; /* Độ cách biên dưới là 20px */
+  left: 0;
+  width: 100%;
+  text-align: center; /* Căn giữa ngang */
+  color: white; /* Màu chữ cho câu slogan */
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Đảm bảo form đăng nhập nằm ở giữa trang */
+  margin-top: -50px; /* Đẩy form đăng nhập lên cao một chút */
+}
+
+.login-form {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.login-form p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.company-logo {
+  max-width: 30%; /* Đảm bảo logo không vượt quá kích thước của phần tử cha */
+  margin-bottom: 20px; /* Khoảng cách giữa logo và các ô nhập */
+  display: block; /* Biến logo thành một phần tử khối (block) */
+  margin-left: auto; /* Căn logo sang trái */
+  margin-right: auto; /* Căn logo sang phải */
+}
+
+.company-logo:hover {
+  transform: scale(1.1); /* Phóng to logo khi di chuột qua */
+  transition: transform 0.5s ease-in-out; /* Thêm hiệu ứng chuyển động */
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  color: black;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; /* Đảm bảo rằng kích thước của ô nhập bao gồm cả padding và border */
+
+}
+
+/* Thiết lập độ rộng tùy chỉnh cho placeholder */
+
+
+
+button {
+  background-color: black;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(188, 91, 53);
+}
+
+.screen {
+  width: inherit;
+  height: inherit;
+  background-color: #000000;
+  position: relative;
+}
+
+.fireG {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 200px;
+}
+
+.fireCrBr {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: inherit;
+  height: inherit;
+  transform: rotate(calc((360deg / var(--bars)) * var(--barNumber)));
+}
+
+.fireCr {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 20px;
+  height: 20px;
+  color: inherit;
+  background-color: currentColor;
+  border-radius: 50%;
+  filter: drop-shadow(0px 4px 15px currentColor);
+  transform: translateY(calc(100% * 10));
+  transition: 0.3s linear;
+  opacity: 0;
+}
+.fireG.fired .fireCr {
+  animation: fireWork 2s linear var(--animationDelay,0s) 1 forwards;
+}
+
+@keyframes fireWork {
+  0%
+  {
+      transform: translateY(calc(30% * 10));
+      opacity: 1;
+  }
+  80%
+  {
+      opacity: 1;
+  }
+  100%
+  {
+      opacity: 0;
+      transform: translateY(calc(-60% * 10));
+  }            
+}        
+
+.fireCr::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 400%;
+  background-color: currentColor;
+  filter: blur(44px);
+  clip-path: polygon(0% 0%, 100% 0%, 60% 100%, 40% 100%);
+}
