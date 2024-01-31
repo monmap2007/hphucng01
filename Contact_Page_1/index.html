@@ -172,7 +172,7 @@
         </div>
     </div>
 
-    <div class="modal" id="successModal" tabindex="-1" role="dialog">
+<div class="modal" id="successModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -189,37 +189,23 @@
             </div>
         </div>
     </div>
-</div>
+</div>    
 
     <script>
-    function validateRecaptcha() {
-        var recaptcha = document.getElementById("recaptcha");
-        var errorElement = document.getElementById("captchaError");
-        if (recaptcha && recaptcha.childNodes.length === 0) {
-            errorElement.style.display = "block";
-            return false; // Trả về false nếu ô reCAPTCHA chưa được tick
-        }
-        errorElement.style.display = "none"; // Ẩn dòng chữ lỗi nếu ô reCAPTCHA đã được tick
-        return true; // Trả về true nếu ô reCAPTCHA đã được tick
-    }
-
     function submitForm() {
-        if (validateRecaptcha()) {
-            // Nếu ô reCAPTCHA đã được tick, tiến hành gửi biểu mẫu
-            var response = grecaptcha.getResponse();
-            if (!response || response.length === 0) {
-                alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
-            } else {
-                // Xử lý gửi thông điệp thành công
-                // Ví dụ:
-                $('#successModal').modal('show'); // Hiển thị cửa sổ modal
-                document.getElementById('contactForm').reset();
-            }
+        var response = grecaptcha.getResponse();
+        if (!response || response.length === 0) {
+            alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
+        } else {
+            // Xử lý gửi thông điệp thành công
+            // Ví dụ:
+            $('#successModal').modal('show'); // Hiển thị cửa sổ modal
+            document.getElementById('contactForm').reset();
         }
     }
 </script>
 
-<iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe> //chặn cho google form show lên khi nhấn gửi
+<iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
 </body>
 
 </html>
