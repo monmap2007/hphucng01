@@ -148,7 +148,7 @@
                             <label for="message">Nội dung</label>
                             <textarea class="form-control" id="message" required></textarea>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7" id="recaptcha"></div>
                         <br>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary">Gửi</button>
@@ -166,7 +166,7 @@
         </div>
     </div>
 
-    <script>
+    <script> //thông báo gửi thành công
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
             // Code xử lý gửi thông tin ở đây
@@ -174,6 +174,18 @@
             alert('Your message has been sent!');
             document.getElementById('contactForm').reset();
         });
+    </script>
+    
+    <script> //nếu không tick vào ô captcha sẽ không gửi được form
+        function submitForm() {
+            var recaptcha = document.getElementById("recaptcha");
+            if (recaptcha && recaptcha.childNodes.length === 0) {
+                alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
+            } else {
+                // Nếu ô reCAPTCHA đã được tick, tiến hành gửi biểu mẫu
+                document.getElementById("contactForm").submit(); // Thay #contactForm bằng ID của biểu mẫu của bạn
+            }
+        }
     </script>
 
 </body>
