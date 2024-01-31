@@ -193,25 +193,25 @@
 
     <script>
     // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-    function checkConditions() {
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var message = document.getElementById("message").value;
-        var recaptcha = document.getElementById("recaptcha");
+function checkConditions() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+    var recaptcha = document.getElementById("recaptcha");
 
-        // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-        if (name && email && message && recaptcha && recaptcha.childNodes.length > 0) {
-            document.getElementById("submitButton").disabled = false; // Kích hoạt nút gửi
-        } else {
-            document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi
-        }
+    // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+    if (name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0) {
+        document.getElementById("submitButton").disabled = false; // Kích hoạt nút gửi
+    } else {
+        document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi
     }
+}
 
-    // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
-    document.getElementById("name").addEventListener("input", checkConditions);
-    document.getElementById("email").addEventListener("input", checkConditions);
-    document.getElementById("message").addEventListener("input", checkConditions);
-    document.getElementById("recaptcha").addEventListener("change", checkConditions);
+// Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
+document.getElementById("name").addEventListener("input", checkConditions);
+document.getElementById("email").addEventListener("input", checkConditions);
+document.getElementById("message").addEventListener("input", checkConditions);
+document.getElementById("recaptcha").addEventListener("change", checkConditions);
 </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
