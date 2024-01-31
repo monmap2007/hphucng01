@@ -10,10 +10,20 @@
 
     <style>
         body {
-            background-image: url('your-background-image.jpg'); /* Thay đổi đường dẫn với ảnh nền của bạn */
+            background-image: url('nđc123.jpg'); /* Thay đổi đường dẫn với ảnh nền của bạn */
             background-size: cover;
             background-position: center;
             color: #fff;
+        }
+
+        body::after {
+            content: "";
+            background-color: rgba(255, 255, 255, 0.5); /* Màu trắng mờ (độ trong suốt 50%) */
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
         }
 
         .navbar {
