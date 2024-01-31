@@ -153,10 +153,10 @@
                             <label for="message">Nội dung</label>
                             <textarea class="form-control" id="message" name="entry.1510604905" required></textarea>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7" id="recaptcha"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7" data-callback="enableSubmit" id="recaptcha"></div>
                         <br>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" id="submitButton">Gửi</button>
+                            <button type="submit" class="btn btn-primary" id="submitButton" disabled>Gửi</button>
                         </div>
                     </form>
                 </div>
@@ -198,13 +198,10 @@ function checkConditions() {
     var email = document.getElementById("email").value;
     var message = document.getElementById("message").value;
     var recaptcha = document.getElementById("recaptcha");
+    var submitButton = document.getElementById("submitButton");
 
     // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-    if (name && email && message && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0) {
-        document.getElementById("submitButton").disabled = false; // Kích hoạt nút gửi
-    } else {
-        document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi
-    }
+    submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0);
 }
 
 // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
@@ -212,6 +209,12 @@ document.getElementById("name").addEventListener("input", checkConditions);
 document.getElementById("email").addEventListener("input", checkConditions);
 document.getElementById("message").addEventListener("input", checkConditions);
 document.getElementById("recaptcha").addEventListener("change", checkConditions);
+
+// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
+function enableSubmit() {
+    document.getElementById("submitButton").disabled = false;
+}
+
 </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
