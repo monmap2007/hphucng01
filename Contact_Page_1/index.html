@@ -171,50 +171,54 @@
         </div>
     </div>
 
-<!-- Thêm modal vào trong phần body của trang -->
-    <div class="modal" id="successModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thông báo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Thông điệp của bạn đã được gửi thành công!</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Thông điệp của bạn đã được gửi thành công!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
-
+</div>
+    
     <script>
     // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-function checkConditions() {
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var message = document.getElementById("message").value;
-    var recaptcha = document.getElementById("recaptcha");
-    var submitButton = document.getElementById("submitButton");
+    function checkConditions() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+        var recaptcha = document.getElementById("recaptcha");
+        var submitButton = document.getElementById("submitButton");
 
-    // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-    submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0);
-}
+        // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+        submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0);
+    }
 
-// Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
-document.getElementById("name").addEventListener("input", checkConditions);
-document.getElementById("email").addEventListener("input", checkConditions);
-document.getElementById("message").addEventListener("input", checkConditions);
-document.getElementById("recaptcha").addEventListener("change", checkConditions);
+    // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
+    document.getElementById("name").addEventListener("input", checkConditions);
+    document.getElementById("email").addEventListener("input", checkConditions);
+    document.getElementById("message").addEventListener("input", checkConditions);
+    document.getElementById("recaptcha").addEventListener("change", checkConditions);
 
-// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
-function enableSubmit() {
-    document.getElementById("submitButton").disabled = false;
-}
+    // Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA và gửi thành công
+    function enableSubmit() {
+        var form = document.getElementById("contactForm");
+        form.reset(); // Reset form
+        document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi sau khi reset form
 
+        // Hiển thị modal thông báo
+        $("#successModal").modal("show");
+    }
 </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
