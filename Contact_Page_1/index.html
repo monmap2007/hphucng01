@@ -7,6 +7,7 @@
     <title>Liên hệ với NiT Club</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
         body {
@@ -153,8 +154,10 @@
                         </div>
                         <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7" id="recaptcha"></div>
                         <br>
+                        <p class="error-message" id="captchaError">Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.</p>
+                        <br>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Gửi</button>
+                            <button type="submit" class="btn btn-primary" onclick="submitForm()">Gửi</button>
                         </div>
                     </form>
                 </div>
@@ -169,21 +172,50 @@
         </div>
     </div>
 
-    <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+    <div class="modal" id="successModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Thông điệp của bạn đã được gửi thành công!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // Kiểm tra xem ô reCAPTCHA đã được tick hay chưa
-        var response = grecaptcha.getResponse();
-        if (!response || response.length === 0) {
-            alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
-        } else {
-            // Nếu ô reCAPTCHA đã được tick, tiến hành gửi thông tin
-            // Ví dụ: Xử lý gửi thông tin ở đây
-            alert('Thư của bạn đã được gửi! Vui lòng đợi bọn mình hồi âm nhé :D');
-            document.getElementById('contactForm').reset();
+    <script>
+    function validateRecaptcha() {
+        var recaptcha = document.getElementById("recaptcha");
+        var errorElement = document.getElementById("captchaError");
+        if (recaptcha && recaptcha.childNodes.length === 0) {
+            errorElement.classList.add("show");
+            return false; // Trả về false nếu ô reCAPTCHA chưa được tick
         }
-    });
+        return true; // Trả về true nếu ô reCAPTCHA đã được tick
+    }
+
+    function submitForm() {
+        if (validateRecaptcha()) {
+            // Nếu ô reCAPTCHA đã được tick, tiến hành gửi biểu mẫu
+            var response = grecaptcha.getResponse();
+            if (!response || response.length === 0) {
+                alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
+            } else {
+                // Xử lý gửi thông điệp thành công
+                // Ví dụ:
+                $('#successModal').modal('show'); // Hiển thị cửa sổ modal
+                document.getElementById('contactForm').reset();
+            }
+        }
+    }
 </script>
 
 
