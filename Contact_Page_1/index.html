@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Liên hệ với NiT Club</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <style>
         body {
             background-image: url('your-background-image.jpg'); /* Thay đổi đường dẫn với ảnh nền của bạn */
@@ -146,6 +148,8 @@
                             <label for="message">Nội dung</label>
                             <textarea class="form-control" id="message" required></textarea>
                         </div>
+                        <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7"></div>
+                        <br>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary">Gửi</button>
                         </div>
