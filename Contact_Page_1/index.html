@@ -139,25 +139,23 @@
             <div class="col-md-6">
                 <div class="contact-form">
                     <h2 class="text-center mb-4">Liên hệ</h2>
-                    <form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfHrxjcimUOWhMP-ZJn3xmpvCCkyVejBTa-47mdeRDVr3uhPQ/formResponse" id="contactForm" target="_iframe" method="POST" >
+                    <form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfHrxjcimUOWhMP-ZJn3xmpvCCkyVejBTa-47mdeRDVr3uhPQ/formResponse" id="contactForm" target="_iframe" method="POST" onsubmit="return validateForm()">
                         <div class="form-group">
                             <label for="name">Tên của bạn</label>
-                            <input type="text" class="form-control" id="name" name="entry.1159635653" required="" value="">
+                            <input type="text" class="form-control" id="name" name="entry.1159635653" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="entry.2003733692" required="" value="">
+                            <input type="email" class="form-control" id="email" name="entry.2003733692" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Nội dung</label>
-                            <textarea class="form-control" id="message" name="entry.1510604905" required="" value=""></textarea>
+                            <textarea class="form-control" id="message" name="entry.1510604905" required></textarea>
                         </div>
                         <div class="g-recaptcha" data-sitekey="6LfECmIpAAAAACq-YgUvlGGM2-gfOIHNum7MRSu7" id="recaptcha"></div>
                         <br>
-                        <p class="error-message" id="captchaError">Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.</p>
-                        <br>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" onclick="submitForm()" disabled>Gửi</button>
+                            <button type="submit" class="btn btn-primary"  disabled>Gửi</button>
                         </div>
                     </form>
                 </div>
