@@ -196,9 +196,10 @@
         var recaptcha = document.getElementById("recaptcha");
         var errorElement = document.getElementById("captchaError");
         if (recaptcha && recaptcha.childNodes.length === 0) {
-            errorElement.classList.add("show");
+            errorElement.style.display = "block";
             return false; // Trả về false nếu ô reCAPTCHA chưa được tick
         }
+        errorElement.style.display = "none"; // Ẩn dòng chữ lỗi nếu ô reCAPTCHA đã được tick
         return true; // Trả về true nếu ô reCAPTCHA đã được tick
     }
 
@@ -218,7 +219,7 @@
     }
 </script>
 
-
+<iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe> //chặn cho google form show lên khi nhấn gửi
 </body>
 
 </html>
