@@ -169,22 +169,7 @@
         </div>
     </div>
 
-    <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Kiểm tra xem ô reCAPTCHA đã được tick hay chưa
-        var response = grecaptcha.getResponse();
-        if (!response || response.length === 0) {
-            alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
-        } else {
-            // Nếu ô reCAPTCHA đã được tick, tiến hành gửi thông tin
-            // Ví dụ: Xử lý gửi thông tin ở đây
-            alert('Thư của bạn đã được gửi! Vui lòng đợi bọn mình hồi âm nhé :D');
-            document.getElementById('contactForm').reset();
-        }
-    });
-</script>
+    
 
 
 </body>
