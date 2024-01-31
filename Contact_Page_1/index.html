@@ -157,7 +157,7 @@
                         <p class="error-message" id="captchaError">Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.</p>
                         <br>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" onclick="submitForm()">Gửi</button>
+                            <button type="submit" class="btn btn-primary" onclick="submitForm()" disabled>Gửi</button>
                         </div>
                     </form>
                 </div>
@@ -193,19 +193,33 @@
     </div>
 
     <script>
-        function submitForm() {
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
             var response = grecaptcha.getResponse();
-            if (!response || response.length === 0) {
-                alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
-                return; // Không thực hiện gửi biểu mẫu nếu ô reCAPTCHA chưa được tick
+
+            if (name.trim() === '' || email.trim() === '' || message.trim() === '' || !response || response.length === 0) {
+                alert("Vui lòng điền đầy đủ thông tin và chọn reCAPTCHA trước khi gửi biểu mẫu.");
+                return false; // Ngăn chặn gửi biểu mẫu nếu các trường không hợp lệ hoặc ô reCAPTCHA chưa được chọn
             }
 
-            // Nếu ô reCAPTCHA đã được tick, tiến hành gửi biểu mẫu
-            // Xử lý gửi thông điệp thành công
-            // Ví dụ:
-            $('#successModal').modal('show'); // Hiển thị cửa sổ modal
+            // Xử lý gửi biểu mẫu nếu tất cả điều kiện hợp lệ
+            $('#successModal').modal('show');
             document.getElementById('contactForm').reset();
+            return false; // Ngăn chặn gửi biểu mẫu bằng cách submit mặc định của form
         }
+
+        // Kiểm tra trạng thái của các trường dữ liệu và ô reCAPTCHA khi người dùng nhập liệu
+        document.getElementById('contactForm').addEventListener('input', function() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+            var response = grecaptcha.getResponse();
+
+            var submitButton = document.getElementById('submitButton');
+            submitButton.disabled = !(name.trim() !== '' && email.trim() !== '' && message.trim() !== '' && response && response.length > 0);
+        });
     </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
