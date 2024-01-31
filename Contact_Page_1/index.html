@@ -171,8 +171,8 @@
         event.preventDefault();
 
         // Kiểm tra xem ô reCAPTCHA đã được tick hay chưa
-        var recaptcha = document.getElementById("recaptcha");
-        if (recaptcha && recaptcha.childNodes.length === 0) {
+        var response = grecaptcha.getResponse();
+        if (!response || response.length === 0) {
             alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
         } else {
             // Nếu ô reCAPTCHA đã được tick, tiến hành gửi thông tin
@@ -182,6 +182,7 @@
         }
     });
 </script>
+
 
 
 </body>
