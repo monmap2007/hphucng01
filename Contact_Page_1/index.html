@@ -173,31 +173,29 @@
 
     <script>
     // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-    function checkConditions() {
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var message = document.getElementById("message").value;
-        var recaptcha = document.getElementById("recaptcha");
-        var submitButton = document.getElementById("submitButton");
+    // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+function checkConditions() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+    var recaptcha = document.getElementById("recaptcha");
+    var submitButton = document.getElementById("submitButton");
 
-        // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-        submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0);
-    }
+    // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+    submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0);
+}
 
-    // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
-    document.getElementById("name").addEventListener("input", checkConditions);
-    document.getElementById("email").addEventListener("input", checkConditions);
-    document.getElementById("message").addEventListener("input", checkConditions);
-    document.getElementById("recaptcha").addEventListener("change", checkConditions);
+// Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
+document.getElementById("name").addEventListener("input", checkConditions);
+document.getElementById("email").addEventListener("input", checkConditions);
+document.getElementById("message").addEventListener("input", checkConditions);
+document.getElementById("recaptcha").addEventListener("change", checkConditions);
 
-    // Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA và gửi thành công
-    function enableSubmit() {
-        var form = document.getElementById("contactForm");
-        form.reset(); // Reset form
-        document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi sau khi reset form
+// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
+function enableSubmit() {
+    document.getElementById("submitButton").disabled = false;
+}
 
-        // Hiển thị thông báo alert gửi thành công
-        alert("Thông điệp của bạn đã được gửi thành công!");
     }
 </script>
 
