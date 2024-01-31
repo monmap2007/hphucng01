@@ -172,38 +172,41 @@
         </div>
     </div>
 
-<div class="modal" id="successModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thông báo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Thông điệp của bạn đã được gửi thành công!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+<!-- Thêm modal vào trong phần body của trang -->
+    <div class="modal" id="successModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Thông điệp của bạn đã được gửi thành công!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
             </div>
         </div>
     </div>
-</div>    
 
     <script>
-    function submitForm() {
-        var response = grecaptcha.getResponse();
-        if (!response || response.length === 0) {
-            alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
-        } else {
+        function submitForm() {
+            var response = grecaptcha.getResponse();
+            if (!response || response.length === 0) {
+                alert("Vui lòng chọn reCAPTCHA trước khi gửi biểu mẫu.");
+                return; // Không thực hiện gửi biểu mẫu nếu ô reCAPTCHA chưa được tick
+            }
+
+            // Nếu ô reCAPTCHA đã được tick, tiến hành gửi biểu mẫu
             // Xử lý gửi thông điệp thành công
             // Ví dụ:
             $('#successModal').modal('show'); // Hiển thị cửa sổ modal
             document.getElementById('contactForm').reset();
         }
-    }
-</script>
+    </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
 </body>
