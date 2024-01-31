@@ -192,8 +192,6 @@ document.getElementById("recaptcha").addEventListener("change", checkConditions)
 
 // Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA và gửi thành công
 function enableSubmit() {
-    var form = document.getElementById("contactForm");
-    form.reset(); // Reset form
     document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi sau khi reset form
 }
 </script>
