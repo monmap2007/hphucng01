@@ -192,34 +192,27 @@
     </div>
 
     <script>
-        function validateForm() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-            var response = grecaptcha.getResponse();
+    // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+    function checkConditions() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+        var recaptcha = document.getElementById("recaptcha");
 
-            if (name.trim() === '' || email.trim() === '' || message.trim() === '' || !response || response.length === 0) {
-                alert("Vui lòng điền đầy đủ thông tin và chọn reCAPTCHA trước khi gửi biểu mẫu.");
-                return false; // Ngăn chặn gửi biểu mẫu nếu các trường không hợp lệ hoặc ô reCAPTCHA chưa được chọn
-            }
-
-            // Xử lý gửi biểu mẫu nếu tất cả điều kiện hợp lệ
-            $('#successModal').modal('show');
-            document.getElementById('contactForm').reset();
-            return false; // Ngăn chặn gửi biểu mẫu bằng cách submit mặc định của form
+        // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+        if (name && email && message && recaptcha && recaptcha.childNodes.length > 0) {
+            document.getElementById("submitButton").disabled = false; // Kích hoạt nút gửi
+        } else {
+            document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi
         }
+    }
 
-        // Kiểm tra trạng thái của các trường dữ liệu và ô reCAPTCHA khi người dùng nhập liệu
-        document.getElementById('contactForm').addEventListener('input', function() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-            var response = grecaptcha.getResponse();
-
-            var submitButton = document.getElementById('submitButton');
-            submitButton.disabled = !(name.trim() !== '' && email.trim() !== '' && message.trim() !== '' && response && response.length > 0);
-        });
-    </script>
+    // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
+    document.getElementById("name").addEventListener("input", checkConditions);
+    document.getElementById("email").addEventListener("input", checkConditions);
+    document.getElementById("message").addEventListener("input", checkConditions);
+    document.getElementById("recaptcha").addEventListener("change", checkConditions);
+</script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
 </body>
