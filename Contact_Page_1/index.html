@@ -172,87 +172,60 @@
     </div>
 
     <script>
-        var formSubmitted = false; // Biến để theo dõi xem form đã được gửi hay chưa
+    var formSubmitted = false; // Biến để theo dõi xem form đã được gửi hay chưa
 
-        // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-        function checkConditions() {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var message = document.getElementById("message").value;
-            var recaptcha = document.getElementById("recaptcha");
-            var submitButton = document.getElementById("submitButton");
+    // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+    function checkConditions() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+        var recaptcha = document.getElementById("recaptcha");
+        var submitButton = document.getElementById("submitButton");
 
-            // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-            submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0) || formSubmitted;
-        }
-
-        // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
-        document.getElementById("name").addEventListener("input", checkConditions);
-        document.getElementById("email").addEventListener("input", checkConditions);
-        document.getElementById("message").addEventListener("input", checkConditions);
-        document.getElementById("recaptcha").addEventListener("change", checkConditions);
-
-        // Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
-        function enableSubmit() {
-            checkConditions(); // Kiểm tra điều kiện sau khi hoàn thành reCAPTCHA
-        }
-
-        // Hàm gửi form
-function submitForm() {
-    var submitButton = document.getElementById("submitButton");
-
-    // Kiểm tra điều kiện trước khi gửi form
-    if (!submitButton.disabled) {
-        var form = document.getElementById("contactForm");
-        formSubmitted = true; // Đánh dấu rằng form đã được gửi
-        form.submit(); // Gửi form
-
-        // Reset form sau khi gửi
-        form.reset();
-
-        submitButton.disabled = true; // Vô hiệu hóa nút gửi sau khi gửi form
-        formSubmitted = false; // Đặt lại giá trị của biến formSubmitted để cho phép gửi lại form
-    } else {
-        alert("Vui lòng điền đầy đủ thông tin và hoàn thành reCAPTCHA trước khi gửi form."); // Thông báo cho người dùng nếu form không đủ điều kiện để gửi
+        // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+        submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0) || formSubmitted;
     }
-}
-// Hàm gửi form
-function submitForm() {
 
-  // Lấy các element
-  var form = document.getElementById("contactForm");
-  var submitButton = document.getElementById("submitButton");
+    // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
+    document.getElementById("name").addEventListener("input", checkConditions);
+    document.getElementById("email").addEventListener("input", checkConditions);
+    document.getElementById("message").addEventListener("input", checkConditions);
+    document.getElementById("recaptcha").addEventListener("change", checkConditions);
 
-  // Kiểm tra điều kiện trước khi gửi
-  if (!submitButton.disabled) {
+    // Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
+    function enableSubmit() {
+        checkConditions(); // Kiểm tra điều kiện sau khi hoàn thành reCAPTCHA
+    }
 
-    // Đánh dấu form đã được gửi
-    formSubmitted = true;
+    // Hàm gửi form
+    function submitForm() {
+        var form = document.getElementById("contactForm");
+        var submitButton = document.getElementById("submitButton");
 
-    // Gửi form
-    form.submit();
+        // Kiểm tra điều kiện trước khi gửi
+        if (!submitButton.disabled) {
+            // Đánh dấu form đã được gửi
+            formSubmitted = true;
 
-    // Đặt delay 1 giây
-    setTimeout(function() {
-    
-      // Reset form  
-      form.reset(); 
-      
-      // Vô hiệu hóa nút gửi
-      submitButton.disabled = true; 
+            // Gửi form
+            form.submit();
 
-      // Cho phép gửi lại form  
-      formSubmitted = false;
-    
-    }, 1000);
+            // Đặt delay 1 giây để reset form
+            setTimeout(function() {
+                // Reset form  
+                form.reset(); 
+                // Vô hiệu hóa nút gửi
+                submitButton.disabled = true; 
+                // Cho phép gửi lại form  
+                formSubmitted = false;
+            }, 1000);
+        } else {
+            // Thông báo lỗi nếu không đủ điều kiện
+            alert("Vui lòng điền đầy đủ thông tin và hoàn thành reCAPTCHA trước khi gửi form.");
+        }
+    }
+</script>
 
-  } else {
-    // Thông báo lỗi nếu không đủ điều kiện
-  }
-
-}
-
-    </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
 </body>
