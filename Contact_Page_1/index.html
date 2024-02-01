@@ -172,7 +172,7 @@
     </div>
 
     <script>
-    // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
+// Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
 function checkConditions() {
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
@@ -190,12 +190,18 @@ document.getElementById("email").addEventListener("input", checkConditions);
 document.getElementById("message").addEventListener("input", checkConditions);
 document.getElementById("recaptcha").addEventListener("change", checkConditions);
 
-// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
-function enableSubmit() {
-    document.getElementById("submitButton").disabled = false;
-}
-}
+// Gọi hàm checkConditions() khi form được reset
+document.getElementById("contactForm").addEventListener("reset", function() {
+    // Sử dụng setTimeout để đảm bảo rằng hàm được gọi sau khi form đã được reset
+    setTimeout(checkConditions, 0);
+});
 
+// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA và gửi thành công
+function enableSubmit() {
+    var form = document.getElementById("contactForm");
+    form.reset(); // Reset form
+    document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi sau khi reset form
+}
 </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
