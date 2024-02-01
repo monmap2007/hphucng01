@@ -172,6 +172,8 @@
     </div>
 
     <script>
+var formSubmitted = false; // Biến để theo dõi xem form đã được gửi hay chưa
+
 // Hàm kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
 function checkConditions() {
     var name = document.getElementById("name").value;
@@ -181,7 +183,7 @@ function checkConditions() {
     var submitButton = document.getElementById("submitButton");
 
     // Kiểm tra điều kiện để kích hoạt hoặc vô hiệu hóa nút gửi
-    submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0);
+    submitButton.disabled = !(name && email && message && recaptcha && recaptcha.childNodes.length > 0 && grecaptcha.getResponse().length > 0) || formSubmitted;
 }
 
 // Gọi hàm checkConditions() khi bất kỳ trường nào thay đổi
@@ -190,18 +192,25 @@ document.getElementById("email").addEventListener("input", checkConditions);
 document.getElementById("message").addEventListener("input", checkConditions);
 document.getElementById("recaptcha").addEventListener("change", checkConditions);
 
-// Gọi hàm checkConditions() khi form được reset
-document.getElementById("contactForm").addEventListener("reset", function() {
-    // Sử dụng setTimeout để đảm bảo rằng hàm được gọi sau khi form đã được reset
-    setTimeout(checkConditions, 0);
-});
-
-// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA và gửi thành công
-function enableSubmit() {
-    var form = document.getElementById("contactForm");
-    form.reset(); // Reset form
-    document.getElementById("submitButton").disabled = true; // Vô hiệu hóa nút gửi sau khi reset form
+// Hàm callback được gọi khi người dùng hoàn thành reCAPTCHA
+function recaptchaCallback() {
+    checkConditions(); // Kiểm tra điều kiện sau khi hoàn thành reCAPTCHA
 }
+
+// Hàm gửi form
+function submitForm() {
+    var submitButton = document.getElementById("submitButton");
+
+    // Kiểm tra điều kiện trước khi gửi form
+    if (!submitButton.disabled) {
+        var form = document.getElementById("contactForm");
+        formSubmitted = true; // Đánh dấu rằng form đã được gửi
+        form.submit(); // Gửi form
+        form.reset(); // Reset form
+        submitButton.disabled = true; // Vô hiệu hóa nút gửi sau khi gửi form
+    }
+}
+
 </script>
 
 <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
