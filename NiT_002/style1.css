@@ -13,7 +13,7 @@ body{
 }
 .main {
     min-height: 100vh;
-    background: url('8.3.png')  no-repeat;
+    background: url('')  no-repeat;
     background-position: center;
     pointer-events: auto;
     transition: .3 ease;
@@ -38,20 +38,21 @@ body{
     align-items: center;
 }
 .home-content {
-    max-width: 1000px;
+    max-width: 1200px;
     display: flex;
     align-items: center;
     flex-direction: column;
 
 }
 .home-content h1 {
-    color: black;
+    color: white;
     font-size: 60px;
     font-weight: 700;
     text-shadow: 0 0 10px rgba(0, 0 , 0, .3);
 }
 .home-content h2 {
-    color: black;
+    color: white;
+    text-align: center;
     
 }
 .home-content .start-btn {
@@ -565,6 +566,21 @@ body{
     margin-left: 350px;
 }
 
+/* Style cho popup video */
+#myVideo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1000;
+}
+
+
+
 
 @media (max-width: 600px) {
     /* Điều chỉnh cho điện thoại di động và máy tính bảng */
@@ -604,9 +620,7 @@ body{
       height: 40px;
       font-size: 16px;
     }
-    .start-btn:before{
-        display:none;
-    }
+    
   
     .popup-info {
       width: 90%;

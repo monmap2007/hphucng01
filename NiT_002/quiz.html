@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="preview_img.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
     <link rel="stylesheet" type="text/css" href="style1.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,14 +16,21 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <linkhref="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet"
     />
-    <title>CLB NiT Trường THPT Nguyễn Đình Chiểu</title>
+    <title>CLB NIT - Trường THPT Nguyễn Đình Chiểu</title>
 </head>
 <body>
+  
+  
+    <video autoplay id="myVideo" controls>
+      <source src="8thang3.mp4" type="video/mp4">
+    </video>
+  
     <main class="main">
+      
         <div class="container">
             <section class="quiz-section">
                 <div class="quiz-box">
-                    <h1>NIT Club Quiz</h1>
+                    <h1>Sự kiện 8-3 - NIT Club</h1>
                     <div class="quiz-header">
                         <span></span>
                           <span class="header-score">Điểm: 0 / 10</span>
@@ -29,7 +40,7 @@
                         </div>
                     </div>
 
-            <h2 class="question-text">Trong ngày Tết, người Việt thường làm gì đầu tiên khi tỉnh dậy?</h2>
+            <h2 class="question-text">Đang loading...</h2>
 
             <div class="option-list">
                 <!-- <div class="option">
@@ -72,7 +83,7 @@
               </div>
             <div class="bxh hidden">
               <div id="header">
-                <h1>Ranking</h1>
+                <h1>Bảng xếp hạng</h1>
 
               </div>
             
@@ -80,30 +91,30 @@
                 <table>
                   <tr>
                     <td class="number">1</td>
-                    <td class="name">Lee Taeyong</td>
+                    <td class="name">Đang cập nhật</td>
                     <td class="points">
-                      258.244
+                      ...
                     </td>
                   </tr>
                   <tr>
                     <td class="number">2</td>
-                    <td class="name">Mark Lee</td>
-                    <td class="points">258.242</td>
+                    <td class="name">Đang cập nhật</td>
+                    <td class="points">...</td>
                   </tr>
                   <tr>
                     <td class="number">3</td>
-                    <td class="name">Xiao Dejun</td>
-                    <td class="points">258.223</td>
+                    <td class="name">Đang cập nhật</td>
+                    <td class="points">...</td>
                   </tr>
                   <tr>
                     <td class="number">4</td>
-                    <td class="name">Qian Kun</td>
-                    <td class="points">258.212</td>
+                    <td class="name">Đang cập nhật</td>
+                    <td class="points">...</td>
                   </tr>
                   <tr>
                     <td class="number">5</td>
-                    <td class="name">Johnny Suh</td>
-                    <td class="points">258.208</td>
+                    <td class="name">Đang cập nhật</td>
+                    <td class="points">...</td>
                   </tr>
                 </table>
                 
@@ -119,6 +130,7 @@
             <h2>Được tổ chức bởi các thành viên CLB NiT - Nguyễn Đình Chiểu Mỹ Tho</h2>
             <br>
             <button class="start-btn">Bắt đầu ngay!</button>
+            
         </div>
     </section>
       </div>
@@ -127,6 +139,7 @@
 
     <div class="popup-info">
         <h2 class="caution">Lưu ý</h2>
+        <p id="customText" style="display: none;">Bạn chỉ có thể trả lời 1 lần và có 15 giây trả lời câu hỏi. Sau 15 giây không trả lời, bạn sẽ được tính là không hoàn thành sự kiện.</p>
         <div class="random-content"></div>
         <br>
         <!-- Đây là form lụm câu trl gửi về GG Form-->
@@ -148,7 +161,10 @@
                 </div>
                 <br>
                 <div class="form-group text-center">
+                    
                     <button type="submit" class="btn btn-primary" id="submitButton">Gửi</button>
+                    <br>
+                    <i style="font-size:10px;">Bạn vui lòng đợi khoảng 3 giây để thông tin được gửi đi nha.</i>
                 </div>
             </form>
         </div>

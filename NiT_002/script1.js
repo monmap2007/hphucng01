@@ -17,6 +17,24 @@ const timeCount = document.querySelector('.time-sec');
 const tryAgainBtn = document.querySelector('.tryAgain-btn');
 const goWheelBtn = document.querySelector('.goWheel-btn');
 
+document.getElementById('myVideo').addEventListener('ended', function() {
+    // Tắt video hoặc ẩn video sau khi phát xong
+    this.style.display = 'none';
+  }, false); 
+
+// Đảm bảo mã JavaScript được thực thi sau khi tài liệu được tải hoàn tất
+document.addEventListener('DOMContentLoaded', function() {
+    // Lấy phần tử nút "Bắt đầu ngay" và "Tiếp tục"
+    const startBtn = document.querySelector('.start-btn');
+    const continueBtn = document.querySelector('.continue-btn');
+  
+    // Thêm sự kiện click cho nút "Tiếp tục"
+    continueBtn.addEventListener('click', function() {
+      // Ẩn nút "Bắt đầu ngay" khi nút "Tiếp tục" được nhấn
+      startBtn.style.display = 'none';
+    });
+  });
+
 // Hàm này sẽ được gọi khi người dùng hết giờ
 function hetGio() {
     // Lưu trạng thái hết giờ vào localStorage
@@ -33,26 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('#contactForm');
-    const iframe = document.querySelector('iframe[name="_iframe"]');
-
-    form.addEventListener('submit', function () {
-        // Hiển thị thông báo alert
-        alert('Đã gửi thông tin của bạn đến CLB NiT. Cảm ơn bạn đã tham gia sự kiện');
-
-        // Đặt sự kiện onload cho iframe để chuyển hướng sau khi form đã được gửi đi thành công
-        iframe.onload = function() {
-            // Chuyển hướng sau khi form đã được gửi đi thành công
-            window.location.href = "https://www.youtube.com"; // Thay đổi URL đến trang bạn muốn chuyển hướng
-        };
-
-        // Không cần gọi event.preventDefault() vì chúng ta muốn form tiếp tục submit một cách tự nhiên
-        // Form sẽ được gửi đến iframe, do đó không làm reload trang chính
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('#contactForm');
@@ -80,6 +78,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const userProgress = localStorage.getItem('userProgress');
+    if (userProgress) {
+        const progress = JSON.parse(userProgress);
+        // Thêm điều kiện kiểm tra điểm số của người dùng
+        if (progress.completed && progress.score < 10) {
+            // Khôi phục tiến trình, ví dụ: hiển thị điểm số
+            alert(`Cảm ơn bạn đã tham gia sự kiện. Vui lòng truy cập fanpage CLB NiT - THPT Nguyễn Đình Chiểu để đợi kết quả nhé.`);
+            // Tùy chọn: Chuyển hướng người dùng hoặc hiển thị thông tin khác
+            window.location.href = "https://www.facebook.com/thptndcnitclub";
+        }
+    }
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var goWheelBtn = document.querySelector('.goWheel-btn');
     var ggForm = document.querySelector('.gg-form');
@@ -92,13 +106,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     startBtn.onclick = () => {
+        
         popupInfo.classList.add('active');
         main.classList.add('active');
-    
+        document.getElementById("customText").style.display = "block"; // Hiển thị đoạn văn
+
     }
     exitBtn.onclick = () => {
         popupInfo.classList.remove('active');
         main.classList.remove('active');
+        
 }
 continueBtn.onclick = () => {
     quizSection.classList.add('active');
@@ -110,7 +127,7 @@ continueBtn.onclick = () => {
 
     showQuestions(0);
     questionCounter(1);
-    startTimer(10);
+    startTimer(15);
     headerScore();
 }
 
@@ -137,6 +154,7 @@ tryAgainBtn.onclick = () => {
 
 
 goWheelBtn.onclick = () => {
+    document.getElementById("customText").style.display = "none"; // Ẩn đoạn văn
     const randomContentElement = document.querySelector('.popup-info .random-content');
     popupInfo.classList.add('active');
     cautionHeading.classList.add('hidden');
@@ -291,7 +309,21 @@ const optionList = document.querySelector('.option-list');
             if (progressStartValue == progressEndValue) {
                 clearInterval(progress);
             }
-        }, speed);
+            if (userScore < 10) {
+                setTimeout(function() {
+                    // Hiển thị thông báo alert
+                    alert("Cảm ơn bạn đã tham gia sự kiện. Vui lòng truy cập fanpage CLB NiT - THPT Nguyễn Đình Chiểu để đợi kết quả nhé." );
+                
+                    // Chuyển hướng người dùng đến YouTube sau khi họ nhấn OK trên thông báo alert
+                    window.location.href = "https://www.facebook.com/thptndcnitclub";
+                }, 1650);
+            }
+            localStorage.setItem('userProgress', JSON.stringify({score: userScore, completed: true}));
+        } , speed);
+
+        
+    
+        // Chuyển hướng người dùng sau khi họ nhấn OK trên thông báo alert
 
         if (userScore < 10) {
             const goWheelBtn = document.querySelector('.goWheel-btn');
@@ -300,7 +332,11 @@ const optionList = document.querySelector('.option-list');
 
         const leaderboardWrapper = document.querySelector('.bxh');
         leaderboardWrapper.classList.remove('hidden');
+
+        
+
     }
+
 
 
     function startTimer(time) {
