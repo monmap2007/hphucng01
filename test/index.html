@@ -58,36 +58,39 @@
     <div class="success hidden"></div>
     <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
 
-    <script>//<![CDATA[
-      function validate(){
-        var captcha_response=grecaptcha.getResponse()
-        if(captcha_response.length==0){
-          document.querySelector('.error-message').innerHTML='<p style="margin-bottom:1.3rem;color:#d93025;">Vui lòng chọn hộp kiểm này nếu bạn muốn tiếp tục.</p>'
-          return false
-        }
-        return true
-      }
-      //]]></script>
 
     <script>//<![CDATA[
-      function validate() {
-      document.querySelector('button[type=submit]').disabled = true;
-      document.querySelector('.box-border').classList.add('hidden');
-      document.querySelector('.processing').classList.remove('hidden');
-      function one(callback) {
-        setTimeout(function() {
-          document.querySelector('.processing').classList.add('hidden');
-          document.querySelector('.success').classList.remove('hidden');
-          callback();
-        }, 3500);
-      }
-      function two() {
-      setTimeout(function() {
+     //<![CDATA[
+function validate() {
+  var captcha_response = grecaptcha.getResponse();
+  if (captcha_response.length == 0) {
+    document.querySelector('.error-message').innerHTML = '<p style="margin-bottom:1.3rem;color:#d93025;">Vui lòng chọn hộp kiểm này nếu bạn muốn tiếp tục.</p>';
+    return false;
+  }
+  
+  // Nếu captcha hợp lệ, tiếp tục với phần còn lại của hàm
+  document.querySelector('button[type=submit]').disabled = true;
+  document.querySelector('.box-border').classList.add('hidden');
+  document.querySelector('.processing').classList.remove('hidden');
+  
+  function one(callback) {
+    setTimeout(function() {
+      document.querySelector('.processing').classList.add('hidden');
+      document.querySelector('.success').classList.remove('hidden');
+      callback();
+    }, 3500);
+  }
+  
+  function two() {
+    setTimeout(function() {
       location.reload();
     }, 4000);
   }
+  
   one(two);
+  return true;
 }
+//]]>
     //]]></script>
 </body>
 </html>
