@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Góc Setup - NiT Club</title>
+    <!-- <link href='https://vietbloggerdesign.github.io/css/contact-form.css' rel='stylesheet'/> -->
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Thêm đoạn này -->
+    <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+    <div class="box-border">
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd_ZcMbeMphkb_UwZpfMvdVG--YREWracXAxqqHtil_TsajaA/formResponse" 
+        onsubmit="validate()" class="contact-form" target="_iframe" method="POST">
+          <h1>Sự kiện</h1>  
+          <!-- <div class="title">Họ và tên</div> -->
+            <div class="form-group">
+              <input class="input" name="entry.1459439751" placeholder="Họ và tên" required="" type="text" value=""
+                oninvalid="this.setCustomValidity('Vui lòng nhập họ và tên thật của bạn.')" 
+                oninput="setCustomValidity('')"/>
+              <i class="bar"></i>
+            </div>
+            <!-- <div class="title">Lớp</div> -->
+            <div class="form-group">
+              <input class="input" name="entry.381827113" placeholder="Lớp" required="" type="text" value=""
+                oninvalid="this.setCustomValidity('Vui lòng nhập lớp bạn đang học.')" 
+                oninput="setCustomValidity('')"/>
+              <i class="bar"></i>
+            </div>
+            <!-- <div class="title">Link Facebook</div> -->
+            <div class="form-group">
+              <input class="input" name="entry.368679996" placeholder="Link facebook" required="" type="url" value=""
+                oninvalid="this.setCustomValidity('Link facebook phải có dạng https://www.facebook.com/xxxxxxxx')" 
+                oninput="setCustomValidity('')"/>
+              <i class="bar"></i>
+            </div>
+            <!-- <div class="title">Link ảnh</div> -->
+            <div class="form-group">
+              <input class="input" name="entry.1791392057" placeholder="Link ảnh" required="" type="url" value=""
+                oninvalid="this.setCustomValidity('Vui lòng nhập link ảnh hợp lệ.')" 
+                oninput="setCustomValidity('')"/>
+              <i class="bar"></i>
+              <br>
+              <p style="font-size:14px; color: white;">*Up và lấy link ảnh <a href="https://vi.imgbb.com" style="color: red;" rel="nofollow" target="_blank">tại đây.</a></p>
+            </div>
+
+            <div class="g-recaptcha" data-sitekey="6LfnnicqAAAAAKMqZzKzqEJEms595Xewib7kXZyU"></div>
+            <div class="error-message"></div>
+            
+            <div class="form-submit">
+              <button class="theme-button blue" type="submit">GỬI</button>
+            </div>
+        </form>
+    </div>
+    <div class="processing hidden"></div>
+    <div class="success hidden"></div>
+    <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
+
+    <script>//<![CDATA[
+      function validateform(){
+        var captcha_response=grecaptcha.getResponse()
+        if(captcha_response.length==0){
+          document.querySelector('.error-message').innerHTML='<p style="margin-bottom:1.3rem;color:#d93025;">Vui lòng chọn hộp kiểm này nếu bạn muốn tiếp tục.</p>'
+          return false
+        }
+        return true
+      }
+      //]]></script>
+
+    <script>//<![CDATA[
+      function validate() {
+      document.querySelector('button[type=submit]').disabled = true;
+      document.querySelector('.box-border').classList.add('hidden');
+      document.querySelector('.processing').classList.remove('hidden');
+      function one(callback) {
+        setTimeout(function() {
+          document.querySelector('.processing').classList.add('hidden');
+          document.querySelector('.success').classList.remove('hidden');
+          callback();
+        }, 3500);
+      }
+      function two() {
+      setTimeout(function() {
+      location.reload();
+    }, 4000);
+  }
+  one(two);
+}
+    //]]></script>
+</body>
+</html>
