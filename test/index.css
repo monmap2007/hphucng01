@@ -106,14 +106,14 @@ body {
 .box-border{position:relative}
 .processing:before,.processing:after,.success:before,.success:after{position:absolute;z-index:99;pointer-events:none}
 .processing:before {
-    top:35%;left:calc(50% - 20px);content:'';border-top:3px solid #33b5e5!important;border-right:3px solid #33b5e5!important;border-bottom:3px solid #33b5e5!important;border-left:3px solid #fff;animation:spin .6s infinite linear;border-radius:50%;width:40px;height:40px}
+    top:45%;left:calc(50% - 20px);content:'';border-top:3px solid #33b5e5!important;border-right:3px solid #33b5e5!important;border-bottom:3px solid #33b5e5!important;border-left:3px solid #fff;animation:spin .6s infinite linear;border-radius:50%;width:40px;height:40px}
 .success:before {
     content:url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFdpDVKyWpntjdOe9vb-gZ_ESaXd7eGwdR_prRB4rYCG8FlflAxj4EO_XDR34J8zaoraZrfIjtDxy-5rrLIetsls43bJTJ76lWsc28fF31dr3dlbK1zhN-u1238QfadAt_wXyZSGyPrWgp/s46/icon-check.png);
-    top: 35%;
+    top: 45%;
     transform: translate(-50%, -10%);
 }
 .processing:after,.success:after{margin-top:35px;color:#fff}
-.processing:after,.success:after{top:40%;transform:translate(-50%,-50%);font-size: 20px;}
+.processing:after,.success:after{top:50%;transform:translate(-50%,-50%);font-size: 20px;}
 .processing:after{content:'Đang gửi...';}
 .success:after{content:'Đã gửi thành công!';}
 
