@@ -61,15 +61,19 @@
 
     <script>//<![CDATA[
      //<![CDATA[
-function validate() {
+//<![CDATA[
+function validate(event) {
   var captcha_response = grecaptcha.getResponse();
+  var submitButton = document.querySelector('button[type=submit]');
+  
   if (captcha_response.length == 0) {
+    event.preventDefault(); // Ngăn form được gửi đi
     document.querySelector('.error-message').innerHTML = '<p style="margin-bottom:1.3rem;color:#d93025;">Vui lòng chọn hộp kiểm này nếu bạn muốn tiếp tục.</p>';
     return false;
   }
   
   // Nếu captcha hợp lệ, tiếp tục với phần còn lại của hàm
-  document.querySelector('button[type=submit]').disabled = true;
+  submitButton.disabled = true; // Vô hiệu hóa nút sau khi nhấn
   document.querySelector('.box-border').classList.add('hidden');
   document.querySelector('.processing').classList.remove('hidden');
   
@@ -90,6 +94,13 @@ function validate() {
   one(two);
   return true;
 }
+
+// Thêm event listener cho form
+document.querySelector('form').addEventListener('submit', function(event) {
+  if (!validate(event)) {
+    event.preventDefault(); // Ngăn form được gửi đi nếu validate() trả về false
+  }
+});
 //]]>
     //]]></script>
 </body>
