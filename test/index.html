@@ -59,7 +59,7 @@
     <iframe name="_iframe" width="0" height="0" border="0" style="display: none;"></iframe>
 
     <script>//<![CDATA[
-      function validateform(){
+      function validate(){
         var captcha_response=grecaptcha.getResponse()
         if(captcha_response.length==0){
           document.querySelector('.error-message').innerHTML='<p style="margin-bottom:1.3rem;color:#d93025;">Vui lòng chọn hộp kiểm này nếu bạn muốn tiếp tục.</p>'
